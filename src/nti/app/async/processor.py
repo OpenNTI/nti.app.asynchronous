@@ -230,7 +230,7 @@ class Processor(object):
         return context
 
     def conf_packages(self):
-        return (self.conf_package, 'nti.async')
+        return (self.conf_package, 'nti.app.async')
 
     def __call__(self, **unused_kwargs):
         arg_parser = self.create_arg_parser()
