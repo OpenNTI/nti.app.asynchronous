@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# nti.app.async documentation build configuration file, created by
+# nti.app.asynchronous documentation build configuration file, created by
 # sphinx-quickstart on Thu Jun  8 07:02:25 2017.
 #
 # This file is execfile()d with the current directory set to its
@@ -23,7 +23,7 @@ import os
 import sys
 import pkg_resources
 sys.path.append(os.path.abspath('../src'))
-rqmt = pkg_resources.require('nti.app.async')[0]
+rqmt = pkg_resources.require('nti.app.asynchronous')[0]
 
 # -- General configuration ------------------------------------------------
 
@@ -54,7 +54,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'nti.app.async'
+project = u'nti.app.asynchronous'
 copyright = u'2017, NextThought'
 author = u'NextThought'
 
@@ -108,7 +108,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'ntiappasyncdoc'
+htmlhelp_basename = 'ntiappasynchronousdoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -135,7 +135,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'ntiappasync.tex', u'nti.app.async Documentation',
+    (master_doc, 'ntiappasynchronous.tex', u'nti.app.asynchronous Documentation',
      u'NextThought', 'manual'),
 ]
 
@@ -145,7 +145,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'ntiappasync', u'nti.app.async Documentation',
+    (master_doc, 'ntiappasynchronous', u'nti.app.asynchronous Documentation',
      [author], 1)
 ]
 
@@ -156,8 +156,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'ntiappasync', u'nti.app.async Documentation',
-     author, 'ntiappasync', 'One line description of project.',
+    (master_doc, 'ntiappasynchronous', u'nti.app.asynchronous Documentation',
+     author, 'ntiappasynchronous', 'One line description of project.',
      'Miscellaneous'),
 ]
 
@@ -171,9 +171,9 @@ intersphinx_mapping = {
 }
 
 extlinks = {
-    'issue': ('https://github.com/NextThought/nti.app.async/issues/%s',
+    'issue': ('https://github.com/NextThought/nti.app.asynchronous/issues/%s',
               'issue #'),
-    'pr': ('https://github.com/NextThought/nti.app.async/pull/%s',
+    'pr': ('https://github.com/NextThought/nti.app.asynchronous/pull/%s',
            'pull request #')}
 
 autodoc_default_flags = ['members', 'show-inheritance']
