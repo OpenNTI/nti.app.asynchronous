@@ -21,7 +21,7 @@ def _read(fname):
 
 
 setup(
-    name='nti.app.async',
+    name='nti.app.asynchronous',
     version=_read('version.txt').strip(),
     author='Jason Madden',
     author_email='jason@nextthought.com',
@@ -40,7 +40,7 @@ setup(
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
     ],
-    url="https://github.com/NextThought/nti.app.async",
+    url="https://github.com/NextThought/nti.app.asynchronous",
     zip_safe=True,
     packages=find_packages('src'),
     package_dir={'': 'src'},
