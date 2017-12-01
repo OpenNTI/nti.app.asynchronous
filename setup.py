@@ -51,6 +51,7 @@ setup(
         'setuptools',
         'nti.asynchronous',
         'zope.component',
+        'zope.exceptions',
         'zope.security',
     ],
     extras_require={
