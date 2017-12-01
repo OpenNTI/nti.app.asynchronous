@@ -50,7 +50,7 @@ logger = __import__('logging').getLogger(__name__)
 # signal handlers
 
 
-def handler(*args):
+def handler(*unused_args):
     raise SystemExit()
 
 

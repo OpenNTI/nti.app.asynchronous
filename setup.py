@@ -49,8 +49,9 @@ setup(
     tests_require=TESTS_REQUIRE,
     install_requires=[
         'setuptools',
-        'nti.async',
+        'nti.asynchronous',
         'zope.component',
+        'zope.exceptions',
         'zope.security',
     ],
     extras_require={
