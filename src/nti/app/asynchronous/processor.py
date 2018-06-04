@@ -15,9 +15,9 @@ import signal
 import logging
 import argparse
 
-from zope.exceptions.log import Formatter as zope_formatter
-
 from zope import component
+
+from zope.exceptions.log import Formatter as zope_formatter
 
 from nti.asynchronous.interfaces import IQueue
 from nti.asynchronous.interfaces import IRedisQueue
@@ -148,7 +148,7 @@ class Processor(object):
             if library is not None:
                 library.syncContentPackages()
         except ImportError:
-            logger.warn("Library not available")
+            logger.warning("Library not available")
 
     def process_args(self, args):
         self.set_log_formatter(args)
@@ -253,6 +253,7 @@ class Processor(object):
                             minimal_ds=True,
                             use_transaction_runner=False,
                             function=lambda: self.process_args(args))
+    run = __call__
 
 
 def main():
