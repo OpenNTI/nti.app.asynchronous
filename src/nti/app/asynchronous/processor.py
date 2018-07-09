@@ -10,7 +10,6 @@ from __future__ import absolute_import
 
 import os
 import sys
-import time
 import signal
 import logging
 import argparse
@@ -148,7 +147,19 @@ class Processor(object):
             if library is not None:
                 library.syncContentPackages()
         except ImportError:
-            logger.warning("Library not available")
+            logger.debug("Library not available")
+
+    def create_reactor(self, failed_jobs=False, threaded=False, exit_on_error=False, **kwargs):
+        if failed_jobs:
+            target = AsyncFailedReactor(**kwargs)
+            component.globalSiteManager.registerUtility(target, IAsyncReactor)
+        elif not threaded:
+            target = AsyncReactor(exitOnError=exit_on_error, **kwargs)
+            component.globalSiteManager.registerUtility(target, IAsyncReactor)
+        else:
+            target = ThreadedReactor(**kwargs)
+            component.globalSiteManager.registerUtility(target, IAsyncReactor)
+        return target
 
     def process_args(self, args):
         self.set_log_formatter(args)
@@ -203,18 +214,8 @@ class Processor(object):
             'max_range_uniform': max_range_uniform,
         }
 
-        if failed_jobs:
-            target = AsyncFailedReactor(**kwargs)
-            component.globalSiteManager.registerUtility(target, IAsyncReactor)
-            result = target()
-        elif not threaded:
-            target = AsyncReactor(exitOnError=exit_on_error, **kwargs)
-            component.globalSiteManager.registerUtility(target, IAsyncReactor)
-            result = target()
-        else:
-            target = ThreadedReactor(**kwargs)
-            component.globalSiteManager.registerUtility(target, IAsyncReactor)
-            result = target(time.sleep)
+        target = self.create_reactor(failed_jobs, threaded, exit_on_error, **kwargs)
+        result = target()
         sys.exit(result)
 
     def extend_context(self, context):
