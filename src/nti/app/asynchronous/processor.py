@@ -33,6 +33,7 @@ from nti.asynchronous.reactor import AsyncFailedReactor
 
 from nti.asynchronous.redis_queue import RedisQueue
 from nti.asynchronous.redis_queue import PriorityQueue
+from nti.asynchronous.redis_queue import ScheduledQueue
 
 from nti.dataserver.interfaces import IRedisClient
 from nti.dataserver.interfaces import IDataserverTransactionRunner
@@ -176,7 +177,9 @@ class Processor(object):
         if getattr(args, 'redis', False):
             queue_interface = IRedisQueue
             logger.info("Using redis queues")
-            if getattr(args, 'priority', False):
+            if getattr(args, 'scheduled', False):
+                self.setup_redis_queues(queue_names, clazz=ScheduledQueue)
+            elif getattr(args, 'priority', False):
                 self.setup_redis_queues(queue_names, clazz=PriorityQueue)
             else:
                 self.setup_redis_queues(queue_names, clazz=RedisQueue)
