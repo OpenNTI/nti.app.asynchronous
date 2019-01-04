@@ -33,7 +33,8 @@ from nti.asynchronous.reactor import AsyncFailedReactor
 
 from nti.asynchronous.redis_queue import RedisQueue
 from nti.asynchronous.redis_queue import PriorityQueue
-from nti.asynchronous.redis_queue import ScheduledQueue
+
+from nti.asynchronous.scheduled.redis_queue import ScheduledQueue
 
 from nti.dataserver.interfaces import IRedisClient
 from nti.dataserver.interfaces import IDataserverTransactionRunner
