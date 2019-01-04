@@ -19,9 +19,13 @@ logger = __import__('logging').getLogger(__name__)
 
 class ScheduledReactor(AsyncReactor):
 
+    def __init__(self, target_queue_name, **kwargs):
+        self.target_queue_name = target_queue_name
+        AsyncReactor.__init__(self, **kwargs)
+
     @readproperty
     def target_queue(self):
-        return get_notification_queue()
+        return get_notification_queue(name=self.target_queue_name)
 
     def perform_job(self, job, queue=None):
         queue = self.current_queue if queue is None else queue

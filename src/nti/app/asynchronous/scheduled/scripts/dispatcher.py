@@ -17,6 +17,7 @@ from nti.app.asynchronous.processor import Processor
 from nti.app.asynchronous.scheduled.reactor import ScheduledReactor
 
 from nti.asynchronous.scheduled import SCHEDULED_QUEUE_NAMES
+from nti.asynchronous.scheduled import NOTIFICATION_QUEUE_NAME
 
 from nti.asynchronous.interfaces import IAsyncReactor
 
@@ -24,7 +25,7 @@ from nti.asynchronous.interfaces import IAsyncReactor
 class Constructor(Processor):
 
     def create_reactor(self, failed_jobs=False, threaded=False, exit_on_error=False, **kwargs):
-        target = ScheduledReactor(**kwargs)
+        target = ScheduledReactor(NOTIFICATION_QUEUE_NAME, **kwargs)
         component.globalSiteManager.registerUtility(target, IAsyncReactor)
         return target
 
