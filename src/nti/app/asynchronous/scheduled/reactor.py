@@ -12,7 +12,7 @@ from zope.cachedescriptors.property import readproperty
 
 from nti.asynchronous.reactor import AsyncReactor
 
-from nti.asynchronous.scheduled.utils import get_notification_queue
+from nti.asynchronous.scheduled.utils import get_executor_queue
 
 logger = __import__('logging').getLogger(__name__)
 
@@ -25,7 +25,7 @@ class ScheduledReactor(AsyncReactor):
 
     @readproperty
     def target_queue(self):
-        return get_notification_queue(name=self.target_queue_name)
+        return get_executor_queue(name=self.target_queue_name)
 
     def perform_job(self, job, queue=None):
         queue = self.current_queue if queue is None else queue
@@ -41,7 +41,7 @@ class ScheduledReactor(AsyncReactor):
         return True
 
 
-class ProcessingReactor(AsyncReactor):
+class ExecutingReactor(AsyncReactor):
 
     def perform_job(self, job, queue=None):
         queue = self.current_queue if queue is None else queue

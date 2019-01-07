@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 entry_points = {
     'console_scripts': [
         "nti_scheduled_dispatcher = nti.app.asynchronous.scheduled.scripts.dispatcher:main",
-        "nti_scheduled_processor = nti.app.asynchronous.scheduled.scripts.processor:main",
+        "nti_scheduled_executor = nti.app.asynchronous.scheduled.scripts.executor:main",
     ],
     "z3c.autoinclude.plugin": [
         'target = nti.app',

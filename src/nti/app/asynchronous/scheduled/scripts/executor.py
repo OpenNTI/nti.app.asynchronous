@@ -29,13 +29,13 @@ from z3c.autoinclude.zcml import includePluginsDirective
 
 from nti.app.asynchronous.processor import Processor
 
-from nti.asynchronous.scheduled import NOTIFICATION_QUEUE_NAMES
+from nti.asynchronous.scheduled import SCHEDULED_JOB_EXECUTOR_QUEUE_NAMES
 
 from nti.app.pyramid_zope.z3c_zpt import renderer_factory as pt_renderer_factory
 
 from nti.asynchronous.interfaces import IAsyncReactor
 
-from nti.app.asynchronous.scheduled.reactor import ProcessingReactor
+from nti.app.asynchronous.scheduled.reactor import ExecutingReactor
 
 
 def _mak_renderer_factory():
@@ -73,14 +73,14 @@ class Constructor(Processor):
         assert component.getGlobalSiteManager().queryUtility(IMailer), u'Must provide a mailer utility'
 
     def create_reactor(self, failed_jobs=False, threaded=False, exit_on_error=False, **kwargs):
-        target = ProcessingReactor(**kwargs)
+        target = ExecutingReactor(**kwargs)
         component.globalSiteManager.registerUtility(target, IAsyncReactor)
         return target
 
     def process_args(self, args):
         setattr(args, 'redis', True)
         setattr(args, 'priority', True)
-        setattr(args, 'queue_names', NOTIFICATION_QUEUE_NAMES)
+        setattr(args, 'queue_names', SCHEDULED_JOB_EXECUTOR_QUEUE_NAMES)
 
         self._setup_template_renderers()
 
