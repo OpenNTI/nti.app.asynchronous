@@ -45,7 +45,7 @@ def _mak_renderer_factory():
 
 
 def _get_app_settings():
-    etc = os.getenv('DATASERVER_ETC_DIR') or os.path.join(env_dir, 'etc')
+    etc = os.getenv('DATASERVER_ETC_DIR') or os.path.join(os.getenv('DATASERVER_DIR'), 'etc')
     etc = os.path.expanduser(etc)
     config_uri = os.path.join(etc, 'pserve.ini')
     loader = get_config_loader(config_uri)
